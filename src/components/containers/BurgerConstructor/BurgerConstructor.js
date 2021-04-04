@@ -45,7 +45,7 @@ class BurgerConstructor extends Component {
         };
         updatedIngredients[type] = updatedCounter;
         this.setState({
-            totalPrice: INGREDIENT_PRICES[type] - this.state.totalPrice, 
+            totalPrice: this.state.totalPrice - INGREDIENT_PRICES[type], 
             ingredients: updatedIngredients
         });
     }
@@ -62,7 +62,7 @@ class BurgerConstructor extends Component {
                 addedIngredientcallback={this.addIngredientHandler} 
                 removedIngredientcallback={this.removeIngredientHandler}
                 disabledInfo={disabledInfo}
-            />
+                totalPrice={this.state.totalPrice} />
         </Aux>
         )
     }
