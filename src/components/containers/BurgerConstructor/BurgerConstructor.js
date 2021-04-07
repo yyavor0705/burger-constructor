@@ -23,7 +23,12 @@ class BurgerConstructor extends Component {
             bacon: 0
         },
         totalPrice: 4,
-        purchasable: false
+        purchasable: false,
+        purchasing: false
+    }
+
+    purchaseHandler = () => {
+        this.setState({purchasing: true});
     }
 
     updatePurchasable (updatedIngredients) {
@@ -73,7 +78,7 @@ class BurgerConstructor extends Component {
         for (let key in disabledInfo) { disabledInfo[key] = disabledInfo[key] <= 0 }
         return (
         <Aux>
-            <Modal>
+            <Modal show={this.state.purchasing}>
                 <OrderSummary ingredients={this.state.ingredients}/>
             </Modal>
             <Burger ingredients={this.state.ingredients}/>
@@ -82,7 +87,8 @@ class BurgerConstructor extends Component {
                 removedIngredientcallback={this.removeIngredientHandler}
                 disabledInfo={disabledInfo}
                 totalPrice={this.state.totalPrice} 
-                purchasable={this.state.purchasable} />
+                purchasable={this.state.purchasable}
+                purchased={this.purchaseHandler} />
         </Aux>
         )
     }
